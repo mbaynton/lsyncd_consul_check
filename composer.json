@@ -1,5 +1,6 @@
 {
     "require": {
-        "sensiolabs/consul-php-sdk": "^1.0"
+        "sensiolabs/consul-php-sdk": "^1.0",
+        "guzzlehttp/guzzle": ">=5.3"
     }
 }
