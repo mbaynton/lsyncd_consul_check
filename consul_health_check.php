@@ -96,12 +96,14 @@ if ($last_write > 60 * 3) {
  */
 $status_str = file_get_contents($status);
 $matches = [];
-if (preg_match("/There are (\d+) delays/", $status_str, $matches) !== 1) {
+if (! preg_match_all("/There are (\d+) delays/", $status_str, $matches, PREG_SET_ORDER)) {
   report (1, 'Could not find the delay count in the status file.');
 }
 
-if ($matches[1] !== "0") {
-  report (1, $matches[0]);
+foreach ($matches as $match) {
+  if ($match[1] !== "0") {
+    report(1, $match[0]);
+  }
 }
 
 report (0, "lsyncd up and synchronized with peer at $http_ip");
